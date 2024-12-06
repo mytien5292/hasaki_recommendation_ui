@@ -83,19 +83,21 @@ def login():
 
     if st.session_state['authentication_status']:
         authenticator.logout()
-        st.write(f'## Welcome back *{st.session_state["name"].strip()}*')
+        if st.session_state["name"]:
+            st.write(f'## Welcome back *{st.session_state["name"].strip()}*')
         main_content()
     elif st.session_state['authentication_status'] is False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] is None:
         st.warning('Please enter your username and password')
 
-        if "old_users_examples" in st.session_state:
-            st.write("### Ví dụ tài khoản cũ:")
-            for example in st.session_state.old_users_examples[:5]:
-                st.write(example)
+        if "old_users_examples" not in st.session_state:
+            load_list_users()
         
-        if "new_users_examples" in st.session_state:
-            st.write("### Ví dụ tài khoản mới:")
-            for example in st.session_state.new_users_examples:
-                st.write(example)
+        st.write("### Ví dụ tài khoản cũ:")
+        for example in st.session_state.old_users_examples[:5]:
+            st.write(example)
+        
+        st.write("### Ví dụ tài khoản mới:")
+        for example in st.session_state.new_users_examples:
+            st.write(example)
