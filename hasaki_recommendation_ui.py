@@ -358,8 +358,10 @@ def get_popular_products():
 
 def new_prediction_content():
     user_name = st.session_state["username"]
-    if "_" not in user_name:
+
+    if user_name is None or "_" not in user_name:
         return
+    
     user_id = int(user_name.split("_")[-1])
 
     history_products, recommendation_products = get_user_recommendations(user_id)
