@@ -56,8 +56,8 @@ def get_product_info(product_ids):
         st.session_state.data_products = load_data_products()
     
     data_products = st.session_state.data_products
-    data_products["hinh_san_pham"] = DEFAULT_IMAGE
-    data_products["link_san_pham"] = DEFAULT_PRODUCT_LINK
+    # data_products["hinh_san_pham"] = DEFAULT_IMAGE
+    # data_products["link_san_pham"] = DEFAULT_PRODUCT_LINK
 
     product_info = data_products[data_products['ma_san_pham'].isin(product_ids)]
 
