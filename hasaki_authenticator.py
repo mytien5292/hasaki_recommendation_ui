@@ -90,7 +90,11 @@ def login():
     if st.session_state['authentication_status']:
         authenticator.logout()
         if st.session_state["name"]:
-            st.write(f'## Welcome back *{st.session_state["name"].strip()}*')
+            #st.write(f'## Xin chào bạn *{st.session_state["name"].strip()}*')
+            st.markdown(
+    f"<h5>Xin chào <em>{st.session_state['name'].strip()}, chào mừng bạn đến thế giới làm đẹp cùng Hasaki!</em></h5>",
+    unsafe_allow_html=True,
+)
         main_content()
     elif st.session_state['authentication_status'] is False:
         st.error('Username/password is incorrect')
