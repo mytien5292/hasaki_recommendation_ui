@@ -357,6 +357,9 @@ def get_popular_products():
     return popular_products['ma_san_pham'].tolist()
 
 def new_prediction_content():
+    if "username" not in st.session_state:
+        return
+
     user_name = st.session_state["username"]
     user_id = int(user_name.split("_")[-1])
 
