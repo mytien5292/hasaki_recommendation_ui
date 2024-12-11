@@ -423,56 +423,62 @@ def new_prediction_content():
 
     history_products, recommendation_products = get_user_recommendations(user_id)
 
-    if len(history_products) == 0:
-        st.write("## Đây là các sản phẩm phổ biến trong thời gian qua mà bạn có thể quan tâm:")
-        st.markdown(
-    """
-    <hr style="border: none; height: 2px; background-color: red;">
-    """,
-    unsafe_allow_html=True
-    )
-        popular_products = get_popular_products()
+    view_type = st.radio("Bạn muốn xem thông tin nào?", ("Xem sản phẩm được gợi ý", "Xem các sản phẩm từng đánh giá"))
 
-        show_list_products_info(popular_products)
+    if view_type == "Xem sản phẩm được gợi ý":
+        if len(history_products) == 0:
+            st.write("## Đây là các sản phẩm phổ biến trong thời gian qua mà bạn có thể quan tâm:")
+            st.markdown(
+                """
+                <hr style="border: none; height: 2px; background-color: red;">
+                """,
+                unsafe_allow_html=True
+                )
+            popular_products = get_popular_products()
+
+            show_list_products_info(popular_products)
+        else:
+            #st.write("##Gợi ý của Hasaki dành cho bạn!")
+            st.markdown(
+                """
+                <div style="
+                    background-color: green; 
+                    color: white; 
+                    padding: 10px; 
+                    border-radius: 5px; 
+                    text-align: center;
+                ">
+                    <h3>Gợi ý của Hasaki dành cho bạn!</h3>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            # recommendation
+            recommendation_products = json.loads(recommendation_products[0])
+            show_list_products_info(recommendation_products)
     else:
-        # Tiêu đề với thẻ h3
-        st.markdown(
-            """
-            <div style="
-                background-color: green; 
-                color: white; 
-                padding: 10px; 
-                border-radius: 5px; 
-                text-align: center;
-            ">
-                <h3>Những sản phẩm mà bạn đã bình luận!</h3>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        
-        # historical data
-        history_products = json.loads(history_products[0])
-        show_list_products_info(history_products)
-
-        #st.write("##Gợi ý của Hasaki dành cho bạn!")
-        st.markdown(
-            """
-            <div style="
-                background-color: green; 
-                color: white; 
-                padding: 10px; 
-                border-radius: 5px; 
-                text-align: center;
-            ">
-                <h3>Gợi ý của Hasaki dành cho bạn!</h3>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        # recommendation
-        recommendation_products = json.loads(recommendation_products[0])
-        show_list_products_info(recommendation_products)
+        if len(history_products) == 0:
+            st.write("## Bạn chưa mua sản phẩm nào cả!")
+        else:
+            # Tiêu đề với thẻ h3
+            st.markdown(
+                """
+                <div style="
+                    background-color: green; 
+                    color: white; 
+                    padding: 10px; 
+                    border-radius: 5px; 
+                    text-align: center;
+                ">
+                    <h3>Những sản phẩm mà bạn đã đánh giá!</h3>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            
+            # historical data
+            history_products = json.loads(history_products[0])
+            show_list_products_info(history_products)
 
 def search_product_content():
     if "product_mapping" not in st.session_state:
