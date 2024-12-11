@@ -4,6 +4,9 @@ import streamlit as st
 import json
 import time
 
+from hasaki_authenticator import login
+from streamlit_searchbox import st_searchbox
+
 DEFAULT_IMAGE = "https://media.hcdn.vn/catalog/product/k/e/kem-chong-nang-skin1004-cho-da-nhay-cam-spf-50-50ml_img_800x800_eb97c5_fit_center.jpg"
 DEFAULT_PRODUCT_LINK = "https://hasaki.vn/san-pham/kem-chong-nang-skin1004-chiet-xuat-rau-ma-spf50-pa-50ml-86167.html"
 
@@ -17,6 +20,12 @@ def load_data_recommendation():
 def load_data_products():
     data = pd.read_csv('data/san_pham_processed.csv')
     return data
+
+@st.cache_data
+def load_product_mapping():
+    data = pd.read_csv('data/san_pham_processed.csv')
+    product_mapping = dict(zip(data['ten_san_pham'], data['ma_san_pham']))
+    return product_mapping
 
 @st.cache_data
 def load_popular_products():
@@ -62,6 +71,26 @@ def get_product_info(product_ids):
     product_info = data_products[data_products['ma_san_pham'].isin(product_ids)]
 
     return product_info
+
+def search_product_name(product_name):
+    if "data_products" not in st.session_state:
+        st.session_state.data_products = load_data_products()
+    
+    data_products = st.session_state.data_products
+    filter_rules = data_products['ten_san_pham'].str.contains(product_name, case=False)
+    product = data_products[filter_rules]
+
+    return list(product["ten_san_pham"].values)
+
+def search_product_code(product_code):
+    if "data_products" not in st.session_state:
+        st.session_state.data_products = load_data_products()
+    
+    data_products = st.session_state.data_products
+    filter_rules = data_products['ma_san_pham'].astype(str).str.contains(product_code, case=False)
+    product = data_products[filter_rules]
+
+    return list(product["ma_san_pham"].values)
 
 # ======= UI part =======
 def show_list_products_info(product_ids):
@@ -445,12 +474,30 @@ def new_prediction_content():
         recommendation_products = json.loads(recommendation_products[0])
         show_list_products_info(recommendation_products)
 
-        
+def search_product_content():
+    if "product_mapping" not in st.session_state:
+        st.session_state.product_mapping = load_product_mapping()
+    
+    product_mapping = st.session_state.product_mapping
+
+    search_type = st.radio("Chọn cách tìm kiếm sản phẩm:", ("Tìm kiếm theo tên sản phẩm", "Tìm kiếm theo mã sản phẩm"))
+
+    if search_type == "Tìm kiếm theo tên sản phẩm":
+        selected_value = st_searchbox(
+            search_product_name,
+            placeholder="Tìm kiếm tên sản phẩm",
+        )
+
+        selected_value = product_mapping.get(selected_value, "Không tìm thấy mã sản phẩm")
+    else:
+        selected_value = st_searchbox(
+            search_product_code,
+            placeholder="Tìm kiếm mã sản phẩm",
+        )
+
+    show_list_products_info([selected_value])
 
 # ======= Main content =======
-#def new_ search_product():
-
-
 def main_content():
     # Tiêu đề với màu xanh lục
     st.markdown(
@@ -473,7 +520,7 @@ def main_content():
         unsafe_allow_html=True,
     )
     # Menu chính
-    menu = ["Đặt vấn đề và thực hiện dự án", "Gợi ý sản phẩm"]
+    menu = ["Đặt vấn đề và thực hiện dự án", "Tìm kiếm sản phẩm", "Gợi ý sản phẩm"]
     choice = st.sidebar.selectbox("", menu)
 
     # Tiêu đề Thành viên thực hiện
@@ -510,7 +557,9 @@ def main_content():
 
     if choice == 'Đặt vấn đề và thực hiện dự án':
         business_objective_content()
-   # elif choice == 'Tìm kiếm sản phẩm':
-   #     new_search_product()
+    elif choice == 'Tìm kiếm sản phẩm':
+        search_product_content()
     elif choice == 'Gợi ý sản phẩm':
-        new_prediction_content()
+        login()
+        if st.session_state['authentication_status']:
+            new_prediction_content()

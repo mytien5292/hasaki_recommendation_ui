@@ -4,7 +4,6 @@ import pandas as pd
 
 import yaml
 from yaml.loader import SafeLoader
-from hasaki_recommendation_ui import main_content
 
 @st.cache_data
 def load_list_users():
@@ -92,10 +91,9 @@ def login():
         if st.session_state["name"]:
             #st.write(f'## Xin chào bạn *{st.session_state["name"].strip()}*')
             st.markdown(
-    f"<h5>Xin chào <em>{st.session_state['name'].strip()}, chào mừng bạn đến thế giới làm đẹp cùng Hasaki!</em></h5>",
-    unsafe_allow_html=True,
-)
-        main_content()
+                f"<h5>Xin chào <em>{st.session_state['name'].strip()}, chào mừng bạn đến thế giới làm đẹp cùng Hasaki!</em></h5>",
+                unsafe_allow_html=True,
+            )
     elif st.session_state['authentication_status'] is False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] is None:
