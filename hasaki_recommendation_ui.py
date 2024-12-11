@@ -90,7 +90,7 @@ def show_product_info(product_info, similar_products_infos):
     <h5 style='color: green;'>{product_info.ten_san_pham}</h5>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.image(product_info.hinh_san_pham, width=200)
     st.write(f"""[Xem chi tiết sản phẩm]({product_info.link_san_pham})""")
     
@@ -133,10 +133,17 @@ def show_similar_products(similar_products_infos):
 def business_objective_content():
     st.image("media/hasaki_banner.jpg", width=800)
     #st.subheader("Đặt vấn đề")
-    # Tiêu đề chính và các tiêu đề phụ với màu xanh lục
+    # 1. Tiêu đề chính và các tiêu đề phụ với màu xanh lục
+    st.markdown(
+    """
+    <h2 style='color: green;'>1. Đặt vấn đề</h2>
+    """,
+    unsafe_allow_html=True,
+    )
+    # 1.1 Giới thiệu bài toán Recommendation
     st.markdown(
         """
-        <h3 style='color: green;'>1. Giới thiệu bài toán Recommendation sản phẩm mỹ phẩm cho Hasaki</h3>
+        <h3 style='color: green; padding-left: 20px; '>  1.1 Giới thiệu bài toán Recommendation sản phẩm mỹ phẩm cho Hasaki</h3>
         """,
         unsafe_allow_html=True,
     )
@@ -146,80 +153,101 @@ def business_objective_content():
     Trong lĩnh vực thương mại điện tử mỹ phẩm, việc cá nhân hóa trải nghiệm mua sắm là chìa khóa giúp nâng cao sự hài lòng của khách hàng và tối ưu doanh thu. Với danh mục sản phẩm đa dạng từ chăm sóc da, trang điểm đến dưỡng tóc, **Hasaki.vn** cần một hệ thống gợi ý sản phẩm thông minh để hỗ trợ khách hàng tìm kiếm và lựa chọn sản phẩm phù hợp.
     """)
 
-    # Tiêu đề "2. Mục tiêu của hệ thống Recommendation:" với màu xanh lục
+    # 1.2 Tiêu đề "1.2. Mục tiêu của hệ thống Recommendation:" với màu xanh lục
     st.markdown(
         """
-        <h3 style='color: green;'>2. Mục tiêu của hệ thống Recommendation</h3>
+        <h3 style='color: green; padding-left: 20px;'>  1.2 Mục tiêu của hệ thống Recommendation</h3>
         """,
         unsafe_allow_html=True,
     )
 
     # Nội dung dưới tiêu đề phụ
-    st.write("""
-    - **Cá nhân hóa**: Đề xuất sản phẩm dựa trên sở thích và hành vi của khách hàng.
-    - **Tăng tỷ lệ chuyển đổi**: Gợi ý sản phẩm liên quan và thúc đẩy bán chéo.
-    - **Độ chính xác cao**: Ứng dụng các phương pháp như Collaborative Filtering, Content-Based Filtering, và Hybrid.
-    """)
-
-    # Tiêu đề "3. Lợi ích cho Hasaki:" với màu xanh lục
-    st.markdown(
-        """
-        <h3 style='color: green;'>3. Lợi ích cho Hasaki</h3>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Nội dung dưới tiêu đề phụ
-    st.write("""
-    - Cải thiện trải nghiệm khách hàng.
-    - Tối ưu hóa chiến lược kinh doanh.
-    - Khẳng định vị thế dẫn đầu trong ngành mỹ phẩm tại Việt Nam.
-    """)
-
-def build_project_content():
-   # st.subheader("Thực hiện dự án")
-   # 1. cào dữ liệu
     st.markdown(
     """
-    <h3 style='color: green;'>1. Crawl thêm dữ liệu</h3>
+    <div style='padding-left: 40px;'>
+        - <b>Cá nhân hóa</b>: Đề xuất sản phẩm dựa trên sở thích và hành vi của khách hàng. <br>
+        - <b>Tăng tỷ lệ chuyển đổi</b>: Gợi ý sản phẩm liên quan và thúc đẩy bán chéo. <br>
+        - <b>Độ chính xác cao</b>: Ứng dụng các phương pháp như Collaborative Filtering, Content-Based Filtering, và Hybrid.
+    </div>
     """,
     unsafe_allow_html=True,
-)
+    )
+
+    # 1.3 Tiêu đề "1.3 Lợi ích cho Hasaki:" với màu xanh lục
+    st.markdown(
+        """
+        <h3 style='color: green; padding-left: 20px;'>  1.3 Lợi ích cho Hasaki</h3>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Nội dung dưới tiêu đề phụ
+    st.markdown(
+    """
+    <div style='padding-left: 40px;'>
+        - Cải thiện trải nghiệm khách hàng. <br>
+        - Tối ưu hóa chiến lược kinh doanh. <br>
+        - Khẳng định vị thế dẫn đầu trong ngành mỹ phẩm tại Việt Nam.
+    </div>
+    """,
+    unsafe_allow_html=True,
+    )
+
+#def build_project_content():
+   # st.subheader("Thực hiện dự án")
+   # 2.1. cào dữ liệu
+    st.markdown(
+    """
+    <h2 style='color: green;'>2. Thực hiện dự án</h2>
+    """,
+    unsafe_allow_html=True,
+    )
+    st.markdown(
+    """
+    <h3 style='color: green; padding-left: 20px;'>  2.1 Crawl thêm dữ liệu</h3>
+    """,
+    unsafe_allow_html=True,
+    )
     st.image("media/crawl_them_du_lieu.jpg", width=600)
     st.markdown(
     """
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
-    # 2. Tiền xử lý dữ liệu
+    )
+    # 2.2. Tiền xử lý dữ liệu
     st.markdown(
     """
-    <h3 style='color: green;'>2. Tiền xử lý dữ liệu</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.2 Tiền xử lý dữ liệu</h3>
     """,
     unsafe_allow_html=True,
-)
-    st.write("""
-            - Bỏ các bình luận bị duplicate hoặc nan
-            - Bỏ các dấu space, khoảng trắng dư thừa
-            - Thay thế kí tự emoji
-            - Thay thế các từ tiếng Anh thành tiếng Việt
-            - Thay thế các từ teencode thành từ đọc được
-            - Bỏ các stopword
-""")
+    )
+    st.markdown(
+    """
+    <div style='padding-left: 40px;'>
+        - Bỏ các bình luận bị duplicate hoặc nan <br>
+        - Bỏ các dấu space, khoảng trắng dư thừa <br>
+        - Thay thế kí tự emoji <br>
+        - Thay thế các từ tiếng Anh thành tiếng Việt <br>
+        - Thay thế các từ teencode thành từ đọc được <br>
+        - Bỏ các stopword
+    </div>
+    """,
+    unsafe_allow_html=True,
+    )
     st.markdown(
     """
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
-    # 3.phân tích dữ liệu
+    )
+    # 2.3.phân tích dữ liệu
     st.markdown(
     """
-    <h3 style='color: green;'>3. Phân tích dữ liệu</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.3 Phân tích dữ liệu</h3>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.write("#### Số lượng review của từng users") 
     st.image("media/so_luong_review_tren_tung_user.jpg", width=600)
 
@@ -236,30 +264,30 @@ def build_project_content():
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
+    )
     # 4.Gensim và Cosine
     st.markdown(
     """
-    <h3 style='color: green;'>4. Xây dựng model bằng Content Base: Gensim và Cosine Similarity</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.4 Xây dựng model bằng Content Base: Gensim và Cosine Similarity</h3>
     """,
     unsafe_allow_html=True,
-)
+    )
 
     st.markdown(
     """
-    <ul style='margin-left: 20px;'>
+    <ul style='padding-left: 40px;'>
         <li>Input: Sản phẩm: 422210557 - Combo 2 Nước Dưỡng Tóc Cocoon Tinh Dầu Bưởi Phiên Bản Mới 140ml.  </li>
         <li>Output: Xuất ra các sản phẩm có nội dung tương tự, có số sao từ 4.0 trở lên.</li>
     </ul>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.image("media/gensim_cosine_ket_qua.jpg", width=600)
 
     st.markdown(
         """
         <span style='font-size: 20px; color: black;'>Kết luận:</span>
-        <ul style='margin-left: 20px;'>
+        <ul style='padding-left: 40px;'>
             <li>Cả Gensim và Cosine Similarity đều cho ra kết quả gợi ý cho mã sản phẩm 422210557 giống nhau.</li>
             <li>Lựa chọn thuật toán Cosine Similarity cho bài toán gợi ý người dùng vì quy mô dữ liệu nhỏ, chỉ tính toán đơn giản về độ tương đồng của 2 vector, thời gian thực hiện nhanh.</li>
         </ul>
@@ -271,23 +299,23 @@ def build_project_content():
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
+    )
     # 5. Surprise, LightFM và ALS
     st.markdown(
     """
-    <h3 style='color: green;'>5. Xây dựng model bằng Collaborative Filtering: Surprise và ALS-PySpark</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.5 Xây dựng model bằng Collaborative Filtering: Surprise và ALS-PySpark</h3>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.markdown(
     """
-    <ul style='margin-left: 20px;'>
+    <ul style='padding-left: 40px;'>
         <li> Input: chọn 1 mã khách hàng nhập vào.  </li>
         <li>Output: Xuất ra các sản phẩm mà khách hàng đã đánh giá và các sản phẩm gợi ý cho khách hàng đó, có số sao từ 4.0 trở lên.</li>
     </ul>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.write("#### Kết quả gợi ý sản phẩm của phương pháp Surprise:") 
     st.image("media/kq_surprise.jpg", width=600)
 
@@ -300,7 +328,7 @@ def build_project_content():
     st.markdown(
         """
         <span style='font-size: 20px; color: black;'>Kết luận:</span>
-        <ul style='margin-left: 20px;'>
+        <ul style='padding-left: 40px;'>
             <li>Phương pháp Surprise và ALS đều cho kết qủa khá tốt, nhưng sẽ chọn phương pháp ALS vì có hiệu suất cao nhất. </li>
             <li>Phương pháp LightFM có kết quả tệ nhất, cần được cải tiến nhiều hơn nếu muốn sử dụng phương pháp này.</li>
         </ul>
@@ -312,36 +340,36 @@ def build_project_content():
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
+    )
     # 6. Kết luận chung
     st.markdown(
     """
-    <h3 style='color: green;'>6. Kết luận chung</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.6 Kết luận chung</h3>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.markdown(
     """
-    <ul style='margin-left: 20px;'>
+    <ul style='padding-left: 40px;'>
         <li> Chọn phương pháp Cosine Similarity nếu muốn dùng Content_based filtering.</li>
         <li> Chọn phương pháp ALS nếu muốn dùng Collaborative filtering. </li>
     </ul>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.markdown(
     """
     <hr style="border: none; height: 2px; background-color: red;">
     """,
     unsafe_allow_html=True
-)
+    )
     # 7. Phân công công việc
     st.markdown(
     """
-    <h3 style='color: green;'>7. Phân công công việc</h3>
+    <h3 style='color: green; padding-left: 20px;'>  2.7 Phân công công việc</h3>
     """,
     unsafe_allow_html=True,
-)
+    )
     st.image("media/phan_cong_cong_viec.jpg", width=600)
     
 #def new_prediction():
@@ -368,6 +396,12 @@ def new_prediction_content():
 
     if len(history_products) == 0:
         st.write("## Đây là các sản phẩm phổ biến trong thời gian qua mà bạn có thể quan tâm:")
+        st.markdown(
+    """
+    <hr style="border: none; height: 2px; background-color: red;">
+    """,
+    unsafe_allow_html=True
+    )
         popular_products = get_popular_products()
 
         show_list_products_info(popular_products)
@@ -382,7 +416,7 @@ def new_prediction_content():
                 border-radius: 5px; 
                 text-align: center;
             ">
-                <h3>Những sản phẩm của Hasaki mà bạn đã tin dùng!</h3>
+                <h3>Những sản phẩm mà bạn đã bình luận!</h3>
             </div>
             """,
             unsafe_allow_html=True,
@@ -392,7 +426,7 @@ def new_prediction_content():
         history_products = json.loads(history_products[0])
         show_list_products_info(history_products)
 
-        #st.write("## Tôi nghĩ bạn cũng sẽ thích những sản phẩm này:")
+        #st.write("##Gợi ý của Hasaki dành cho bạn!")
         st.markdown(
             """
             <div style="
@@ -414,6 +448,9 @@ def new_prediction_content():
         
 
 # ======= Main content =======
+#def new_ search_product():
+
+
 def main_content():
     # Tiêu đề với màu xanh lục
     st.markdown(
@@ -436,7 +473,7 @@ def main_content():
         unsafe_allow_html=True,
     )
     # Menu chính
-    menu = ["Đặt vấn đề", "Thực hiện dự án", "Dự đoán mới"]
+    menu = ["Đặt vấn đề và thực hiện dự án", "Gợi ý sản phẩm"]
     choice = st.sidebar.selectbox("", menu)
 
     # Tiêu đề Thành viên thực hiện
@@ -471,9 +508,9 @@ def main_content():
     </div>
     """, unsafe_allow_html=True) 
 
-    if choice == 'Đặt vấn đề':
+    if choice == 'Đặt vấn đề và thực hiện dự án':
         business_objective_content()
-    elif choice == 'Thực hiện dự án':
-        build_project_content()
-    elif choice == 'Dự đoán mới':
+   # elif choice == 'Tìm kiếm sản phẩm':
+   #     new_search_product()
+    elif choice == 'Gợi ý sản phẩm':
         new_prediction_content()
